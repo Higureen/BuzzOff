@@ -13,7 +13,7 @@ config_version=5
 config/name="BuzzOff"
 run/main_scene="uid://csh75583yjn66"
 config/features=PackedStringArray("4.6", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="res://assets/icon.svg"
 
 [autoload]
 
@@ -37,4 +37,5 @@ renderer/rendering_method.mobile="gl_compatibility"
 [xr]
 
 openxr/enabled=true
+openxr/default_action_map="res://xr/openxr_action_map.tres"
 shaders/enabled=true

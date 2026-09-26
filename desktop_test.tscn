@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://crtovdcphftgy"]
+
+[ext_resource type="PackedScene" uid="uid://dse052p3ppiuy" path="res://world.tscn" id="1_i6vpo"]
+[ext_resource type="Script" uid="uid://cunogl60titsl" path="res://desktop_camera.gd" id="2_a1bfn"]
+
+[node name="DesktopTest" type="Node3D" unique_id=1252088272]
+
+[node name="World" parent="." unique_id=167688059 instance=ExtResource("1_i6vpo")]
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1665858498]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
+current = true
+script = ExtResource("2_a1bfn")

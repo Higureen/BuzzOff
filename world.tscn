@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://dse052p3ppiuy"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_h2yge"]
+size = Vector3(6, 0.2, 6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1bvp3"]
+size = Vector3(6, 0.2, 6)
+
+[sub_resource type="BoxMesh" id="BoxMesh_1bvp3"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[node name="World" type="Node3D" unique_id=167688059]
+
+[node name="Floor" type="StaticBody3D" parent="." unique_id=22181382]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor" unique_id=689370977]
+mesh = SubResource("BoxMesh_h2yge")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor" unique_id=305158055]
+shape = SubResource("BoxShape3D_1bvp3")
+
+[node name="TestCube" type="MeshInstance3D" parent="." unique_id=977949471]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, -2)
+mesh = SubResource("BoxMesh_1bvp3")
+
+[node name="Label3D" type="Label3D" parent="." unique_id=327401917]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -2)
+modulate = Color(1, 0.43529412, 1, 1)
+text = "BuzzOff"
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=177959942]
+transform = Transform3D(1, 0, 0, 0, 0.49999997, 0.86602545, 0, -0.86602545, 0.49999997, 0, 0, 0)

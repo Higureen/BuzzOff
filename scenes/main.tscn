@@ -4,6 +4,9 @@
 [ext_resource type="PackedScene" uid="uid://l2n30mpbkdyw" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/right_hand_low.tscn" id="2_tbgi4"]
 [ext_resource type="PackedScene" uid="uid://clc5dre31iskm" path="res://addons/godot-xr-tools/xr/start_xr.tscn" id="3_tefeu"]
 [ext_resource type="PackedScene" uid="uid://dse052p3ppiuy" path="res://scenes/world.tscn" id="4_o6xl0"]
+[ext_resource type="Texture2D" uid="uid://bnls7gmia01nh" path="res://assets/heartfull.png" id="5_o6xl0"]
+[ext_resource type="Texture2D" uid="uid://j2y84rqm5nla" path="res://assets/hearthalf.png" id="6_tipki"]
+[ext_resource type="Texture2D" uid="uid://c470e1ok5koqr" path="res://assets/heartempty.png" id="7_85g3d"]
 
 [node name="Main" type="Node3D" unique_id=1544125726]
 
@@ -27,3 +30,49 @@ pose = &"grip"
 [node name="StartXR" parent="." unique_id=1699459865 instance=ExtResource("3_tefeu")]
 
 [node name="World" parent="." unique_id=167688059 instance=ExtResource("4_o6xl0")]
+
+[node name="demoLayout" type="Control" parent="World" unique_id=1110078767]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="World/demoLayout" unique_id=773202554]
+layout_mode = 0
+offset_right = 1153.0
+offset_bottom = 644.0
+color = Color(1, 1, 1, 0)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="World/demoLayout" unique_id=973209600]
+layout_mode = 0
+offset_right = 1151.0
+offset_bottom = 653.0
+
+[node name="Label" type="Label" parent="World/demoLayout/VBoxContainer" unique_id=84039989]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Money: 3000"
+horizontal_alignment = 2
+
+[node name="Label2" type="Label" parent="World/demoLayout/VBoxContainer" unique_id=418994279]
+layout_mode = 2
+
+[node name="Heartfull" type="Sprite2D" parent="World/demoLayout/VBoxContainer" unique_id=1685210932]
+position = Vector2(50, 49)
+scale = Vector2(1, 0.99236417)
+texture = ExtResource("5_o6xl0")
+
+[node name="Heartfull2" type="Sprite2D" parent="World/demoLayout/VBoxContainer" unique_id=432934813]
+position = Vector2(149, 48)
+scale = Vector2(1, 0.99236417)
+texture = ExtResource("5_o6xl0")
+
+[node name="Hearthalf" type="Sprite2D" parent="World/demoLayout/VBoxContainer" unique_id=617795197]
+position = Vector2(246, 49)
+scale = Vector2(1, 0.99236417)
+texture = ExtResource("6_tipki")
+
+[node name="Heartempty" type="Sprite2D" parent="World/demoLayout/VBoxContainer" unique_id=1882896283]
+position = Vector2(345, 49)
+scale = Vector2(1, 0.99236417)
+texture = ExtResource("7_85g3d")

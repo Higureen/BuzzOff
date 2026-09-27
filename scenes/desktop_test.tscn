@@ -1,11 +1,71 @@
 [gd_scene format=3 uid="uid://crtovdcphftgy"]
 
 [ext_resource type="PackedScene" uid="uid://dse052p3ppiuy" path="res://scenes/world.tscn" id="1_c54ik"]
+[ext_resource type="Texture2D" uid="uid://bnls7gmia01nh" path="res://assets/heartfull.png" id="2_abtm4"]
 [ext_resource type="Script" uid="uid://cunogl60titsl" path="res://scripts/desktop_camera.gd" id="2_el817"]
+[ext_resource type="Texture2D" uid="uid://j2y84rqm5nla" path="res://assets/hearthalf.png" id="3_s7yox"]
+[ext_resource type="Texture2D" uid="uid://c470e1ok5koqr" path="res://assets/heartempty.png" id="4_o5noo"]
+[ext_resource type="Texture2D" uid="uid://b0gd0rll5xrv1" path="res://assets/money.png" id="5_s7yox"]
 
 [node name="DesktopTest" type="Node3D" unique_id=1252088272]
 
 [node name="World" parent="." unique_id=167688059 instance=ExtResource("1_c54ik")]
+
+[node name="demoLayoutMore" type="Control" parent="World" unique_id=549362565]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="World/demoLayoutMore" unique_id=1787741764]
+layout_mode = 0
+offset_right = 1153.0
+offset_bottom = 644.0
+color = Color(1, 1, 1, 0)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="World/demoLayoutMore" unique_id=841094587]
+layout_mode = 0
+offset_right = 1151.0
+offset_bottom = 653.0
+
+[node name="Label" type="Label" parent="World/demoLayoutMore/VBoxContainer" unique_id=1936779478]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = " 3000  "
+horizontal_alignment = 2
+
+[node name="Label2" type="Label" parent="World/demoLayoutMore/VBoxContainer" unique_id=1733092552]
+layout_mode = 2
+
+[node name="Label3" type="Label" parent="World/demoLayoutMore/VBoxContainer" unique_id=246195397]
+layout_mode = 2
+theme_override_font_sizes/font_size = 29
+text = "Mosquitoes left: 6  "
+horizontal_alignment = 2
+
+[node name="Heartfull" type="Sprite2D" parent="World/demoLayoutMore/VBoxContainer" unique_id=1381060001]
+position = Vector2(50, 49)
+scale = Vector2(1, 0.99236417)
+texture = ExtResource("2_abtm4")
+
+[node name="Heartfull2" type="Sprite2D" parent="World/demoLayoutMore/VBoxContainer" unique_id=607032627]
+position = Vector2(149, 48)
+scale = Vector2(1, 0.99236417)
+texture = ExtResource("2_abtm4")
+
+[node name="Hearthalf" type="Sprite2D" parent="World/demoLayoutMore/VBoxContainer" unique_id=1931003061]
+position = Vector2(246, 49)
+scale = Vector2(1, 0.99236417)
+texture = ExtResource("3_s7yox")
+
+[node name="Heartempty" type="Sprite2D" parent="World/demoLayoutMore/VBoxContainer" unique_id=1201709564]
+position = Vector2(345, 49)
+scale = Vector2(1, 0.99236417)
+texture = ExtResource("4_o5noo")
+
+[node name="Money" type="Sprite2D" parent="World/demoLayoutMore/VBoxContainer" unique_id=1078085196]
+position = Vector2(971, 34)
+texture = ExtResource("5_s7yox")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1665858498]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)

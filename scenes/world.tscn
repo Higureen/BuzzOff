@@ -1,5 +1,8 @@
 [gd_scene format=3 uid="uid://dse052p3ppiuy"]
 
+[ext_resource type="Script" uid="uid://cbl77gcmpdy4i" path="res://scripts/info_board.gd" id="1_nnsk1"]
+[ext_resource type="Script" uid="uid://c8k5m7maheli1" path="res://scripts/mosquito.gd" id="2_rwgxs"]
+
 [sub_resource type="BoxMesh" id="BoxMesh_h2yge"]
 size = Vector3(6, 0.2, 6)
 
@@ -8,6 +11,12 @@ size = Vector3(6, 0.2, 6)
 
 [sub_resource type="BoxMesh" id="BoxMesh_1bvp3"]
 size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="QuadMesh" id="QuadMesh_nnsk1"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_rwgxs"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_4wyf3"]
 
 [node name="World" type="Node3D" unique_id=167688059]
 
@@ -31,3 +40,28 @@ text = "BuzzOff"
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=177959942]
 transform = Transform3D(1, 0, 0, 0, 0.49999997, 0.86602545, 0, -0.86602545, 0.49999997, 0, 0, 0)
+
+[node name="InfoBoard" type="Node3D" parent="." unique_id=1460210758]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3230287, 0.557695, -0.41043472)
+script = ExtResource("1_nnsk1")
+
+[node name="BoardMesh" type="MeshInstance3D" parent="InfoBoard" unique_id=1196434049]
+mesh = SubResource("QuadMesh_nnsk1")
+
+[node name="TitleLabel" type="Label3D" parent="InfoBoard" unique_id=1587590098]
+
+[node name="WeaponLabel" type="Label3D" parent="InfoBoard" unique_id=1337003371]
+
+[node name="MosquitoLabel" type="Label3D" parent="InfoBoard" unique_id=528308428]
+
+[node name="MoneyLabel" type="Label3D" parent="InfoBoard" unique_id=340862710]
+
+[node name="Mosquito" type="Area3D" parent="." unique_id=1713828576]
+transform = Transform3D(0.22166595, 0, 0, 0, 0.3444379, 0, 0, 0, 0.33448285, -1.3436671, 0.5890486, 1.6433115)
+script = ExtResource("2_rwgxs")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Mosquito" unique_id=632124272]
+mesh = SubResource("SphereMesh_rwgxs")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Mosquito" unique_id=388442147]
+shape = SubResource("SphereShape3D_4wyf3")

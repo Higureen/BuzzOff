@@ -1,7 +1,7 @@
 extends Area3D
 
-@export var movement_radius: float = 1.0
-@export var movement_speed: float = 2.0
+@export var movement_radius: float = 0.4
+@export var movement_speed: float = 0.8
 @export var reward: int = 10
 
 var start_position: Vector3

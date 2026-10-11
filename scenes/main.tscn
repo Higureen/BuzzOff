@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://csh75583yjn66"]
 
 [ext_resource type="PackedScene" uid="uid://b4kad2kuba1yn" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_hand_low.tscn" id="1_jyhfs"]
+[ext_resource type="Script" uid="uid://b5wkeqhrvx0i7" path="res://scripts/vr_game.gd" id="1_trceg"]
 [ext_resource type="PackedScene" uid="uid://bl2nuu3qhlb5k" path="res://addons/godot-xr-tools/functions/movement_direct.tscn" id="2_choun"]
 [ext_resource type="PackedScene" uid="uid://l2n30mpbkdyw" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/right_hand_low.tscn" id="2_tbgi4"]
 [ext_resource type="Script" uid="uid://cqq82nqhnqcvf" path="res://scripts/tools/tool_slot.gd" id="3_choun"]
@@ -11,8 +12,10 @@
 [ext_resource type="Texture2D" uid="uid://j2y84rqm5nla" path="res://assets/hearthalf.png" id="6_tipki"]
 [ext_resource type="Texture2D" uid="uid://c470e1ok5koqr" path="res://assets/heartempty.png" id="7_85g3d"]
 [ext_resource type="Script" uid="uid://1tsyeqqtooru" path="res://scripts/tools/equipment_manager.gd" id="11_ya4ey"]
+[ext_resource type="PackedScene" uid="uid://fqqoq6ekuxfr" path="res://scenes/pause_menu.tscn" id="12_eb6dy"]
 
 [node name="Main" type="Node3D" unique_id=1544125726]
+script = ExtResource("1_trceg")
 
 [node name="XROrigin3D" type="XROrigin3D" parent="." unique_id=92581575]
 
@@ -102,3 +105,9 @@ texture = ExtResource("7_85g3d")
 
 [node name="EquipmentManager" type="Node3D" parent="." unique_id=1175818874]
 script = ExtResource("11_ya4ey")
+
+[node name="PauseMenu" parent="." unique_id=144022820 instance=ExtResource("12_eb6dy")]
+offset_left = 755.0288
+offset_top = 287.11975
+offset_right = 755.0288
+offset_bottom = 287.11975

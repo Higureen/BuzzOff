@@ -4,15 +4,16 @@
 [ext_resource type="Script" uid="uid://c8k5m7maheli1" path="res://scripts/mosquito.gd" id="2_rwgxs"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_h2yge"]
-size = Vector3(6, 0.2, 6)
+size = Vector3(12, 0.2, 12)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1bvp3"]
-size = Vector3(6, 0.2, 6)
+size = Vector3(12, 0.2, 12)
 
 [sub_resource type="BoxMesh" id="BoxMesh_1bvp3"]
 size = Vector3(0.5, 0.5, 0.5)
 
 [sub_resource type="QuadMesh" id="QuadMesh_nnsk1"]
+size = Vector2(1.5, 1.5)
 
 [sub_resource type="SphereMesh" id="SphereMesh_rwgxs"]
 
@@ -42,22 +43,31 @@ text = "BuzzOff"
 transform = Transform3D(1, 0, 0, 0, 0.49999997, 0.86602545, 0, -0.86602545, 0.49999997, 0, 0, 0)
 
 [node name="InfoBoard" type="Node3D" parent="." unique_id=1460210758]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3230287, 0.557695, -0.41043472)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.5073357, 0.64559287, -0.103403926)
 script = ExtResource("1_nnsk1")
 
 [node name="BoardMesh" type="MeshInstance3D" parent="InfoBoard" unique_id=1196434049]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.01995802)
 mesh = SubResource("QuadMesh_nnsk1")
 
 [node name="TitleLabel" type="Label3D" parent="InfoBoard" unique_id=1587590098]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.341375, 0)
 
 [node name="WeaponLabel" type="Label3D" parent="InfoBoard" unique_id=1337003371]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.19937575, 0)
 
 [node name="MosquitoLabel" type="Label3D" parent="InfoBoard" unique_id=528308428]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.08163154, 0)
 
 [node name="MoneyLabel" type="Label3D" parent="InfoBoard" unique_id=340862710]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.27834165, 0)
 
-[node name="Mosquito" type="Area3D" parent="." unique_id=1713828576]
-transform = Transform3D(0.22166595, 0, 0, 0, 0.3444379, 0, 0, 0, 0.33448285, -1.3436671, 0.5890486, 1.6433115)
+[node name="KilledLabel" type="Label3D" parent="InfoBoard" unique_id=2071155878]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.47268462, 0)
+
+[node name="Mosquito" type="Area3D" parent="." unique_id=1713828576 groups=["mosquito"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3436671, 1.1297793, 1.0621967)
+monitoring = false
 script = ExtResource("2_rwgxs")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Mosquito" unique_id=632124272]

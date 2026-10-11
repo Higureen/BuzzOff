@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://clc5dre31iskm" path="res://addons/godot-xr-tools/xr/start_xr.tscn" id="3_tefeu"]
 [ext_resource type="PackedScene" uid="uid://dse052p3ppiuy" path="res://scenes/world.tscn" id="4_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://diyu06cw06syv" path="res://addons/godot-xr-tools/player/player_body.tscn" id="4_ya4ey"]
+[ext_resource type="PackedScene" uid="uid://b6bk2pj8vbj28" path="res://addons/godot-xr-tools/functions/movement_turn.tscn" id="5_eb6dy"]
 [ext_resource type="Texture2D" uid="uid://bnls7gmia01nh" path="res://assets/heartfull.png" id="5_o6xl0"]
 [ext_resource type="Texture2D" uid="uid://j2y84rqm5nla" path="res://assets/hearthalf.png" id="6_tipki"]
 [ext_resource type="Texture2D" uid="uid://c470e1ok5koqr" path="res://assets/heartempty.png" id="7_85g3d"]
@@ -44,6 +45,8 @@ tracker = &"right_hand"
 pose = &"grip"
 
 [node name="RightHand" parent="XROrigin3D/RightHand" unique_id=693526663 instance=ExtResource("2_tbgi4")]
+
+[node name="MovementTurn" parent="XROrigin3D/RightHand" unique_id=1925396305 instance=ExtResource("5_eb6dy")]
 
 [node name="ToolSlot" type="Node3D" parent="XROrigin3D/RightHand" unique_id=913336000]
 script = ExtResource("3_choun")
@@ -100,5 +103,5 @@ position = Vector2(345, 49)
 scale = Vector2(1, 0.99236417)
 texture = ExtResource("7_85g3d")
 
-[node name="EquipmentManager" type="Node3D" parent="." unique_id=1175818874]
+[node name="EquipmentManager" type="Node3D" parent="." unique_id=1175818874 groups=["equipment_manager"]]
 script = ExtResource("11_ya4ey")

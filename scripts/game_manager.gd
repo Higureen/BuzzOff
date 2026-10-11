@@ -5,7 +5,7 @@ signal game_data_changed
 var killed_count: int = 0
 var mosquitoes_left: int = 6
 var money: int = 0
-var current_weapon: String = "Musgaudis"
+var current_weapon: String = ""
 
 
 func mosquito_killed(reward: int = 10) -> void:

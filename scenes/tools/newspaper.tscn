@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://dllrsodf4nok0"]
+
+[ext_resource type="Script" uid="uid://r1ao58gpn15x" path="res://scripts/tools/newspaper.gd" id="1_ge38h"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_orewu"]
+top_radius = 0.035
+bottom_radius = 0.035
+height = 0.3
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o430b"]
+albedo_color = Color(0.4016504, 0.38287348, 0.2373091, 1)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_58k2v"]
+height = 0.3
+radius = 0.04
+
+[node name="Newspaper" type="Node3D" unique_id=338518248]
+script = ExtResource("1_ge38h")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1755319142]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, -0.15)
+mesh = SubResource("CylinderMesh_orewu")
+surface_material_override/0 = SubResource("StandardMaterial3D_o430b")
+
+[node name="HitArea" type="Area3D" parent="." unique_id=1115421929]
+collision_layer = 0
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HitArea" unique_id=1432262225]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, -0.15)
+shape = SubResource("CylinderShape3D_58k2v")

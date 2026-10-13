@@ -102,7 +102,13 @@ func swap_hands() -> void:
 
 func _get_slot(hand: int) -> HandToolSlot:
 	return left_slot if hand == 0 else right_slot
+	
 func _on_controller_button(button: String, hand: int) -> void:
+	if hand == 1 and button == "by_button":
+		return
+	if get_tree().paused:
+		return
+		
 	if not XRToolsStartXR.is_xr_active():
 		return
 
@@ -225,3 +231,7 @@ func _refresh_menu() -> void:
 	menu_label.text += "\nSvirtelė ↑↓ – pasirinkti"
 	menu_label.text += "\nTrigeris – patvirtinti"
 	menu_label.text += "\nX / A – uždaryti"
+
+
+func close_menu() -> void:
+	_close_menu()

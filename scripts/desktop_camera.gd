@@ -24,17 +24,6 @@ func _input(event: InputEvent) -> void:
 				deg_to_rad(85.0)
 			)
 
-	if event is InputEventKey:
-		if event.pressed and not event.echo and event.keycode == KEY_ESCAPE:
-			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-
-			var pause_menu = get_parent().get_node_or_null("PauseMenu")
-
-			if pause_menu:
-				if pause_menu.visible:
-					pause_menu.resume()
-				else:
-					pause_menu.pause()
 
 func _process(delta: float) -> void:
 	var direction := Vector3.ZERO

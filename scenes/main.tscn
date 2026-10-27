@@ -56,7 +56,7 @@ script = ExtResource("3_choun")
 [node name="StartXR" parent="." unique_id=1699459865 instance=ExtResource("3_tefeu")]
 
 [node name="World" parent="." unique_id=167688059 instance=ExtResource("4_o6xl0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.0644865, -0.49022388, -4.0588074)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7677068, 0.23407865, -1.1270506)
 
 [node name="EquipmentManager" type="Node3D" parent="." unique_id=1175818874 groups=["equipment_manager"]]
 script = ExtResource("11_ya4ey")

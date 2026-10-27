@@ -4,7 +4,8 @@ signal equipment_changed
 
 const TOOL_SCENES: Dictionary = {
 	"flashlight": preload("res://scenes/tools/flashlight.tscn"),
-	"newspaper": preload("res://scenes/tools/newspaper.tscn")
+	"newspaper": preload("res://scenes/tools/newspaper.tscn"),
+	"ball": preload("res://scenes/tools/ball.tscn")
 }
 
 var active_hand: int = -1
@@ -40,7 +41,7 @@ func _ready() -> void:
 
 	menu_label.visible = false
 # turimi daiktai, rankos pradzioje tuscios
-var owned_tools: Array[String] = ["flashlight", "newspaper"]
+var owned_tools: Array[String] = ["flashlight", "newspaper", "ball"]
 var equipped_ids: Array[String] = ["", ""]
 
 @onready var left_slot: HandToolSlot = (
@@ -222,6 +223,8 @@ func _refresh_menu() -> void:
 				display_name = "Žibintuvėlis"
 			"newspaper":
 				display_name = "Laikraštis"
+			"ball":
+				display_name = "Kamuoliukas"
 			"@swap":
 				display_name = "Sukeisti rankas"
 

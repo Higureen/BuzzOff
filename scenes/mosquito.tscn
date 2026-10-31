@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://okncijficpcp"]
+
+[ext_resource type="Script" uid="uid://c8k5m7maheli1" path="res://scripts/mosquito.gd" id="1_hdjtb"]
+[ext_resource type="AudioStream" uid="uid://b5ko8wwlwy0yb" path="res://assets/audio/mosquito_buzz.wav" id="2_u7nif"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_rwgxs"]
+radius = 0.06
+height = 0.12
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_4wyf3"]
+radius = 0.16
+
+[node name="Mosquito" type="Area3D" unique_id=154893606 groups=["mosquito"]]
+collision_mask = 0
+monitoring = false
+script = ExtResource("1_hdjtb")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1204196913]
+mesh = SubResource("SphereMesh_rwgxs")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1542507780]
+shape = SubResource("SphereShape3D_4wyf3")
+
+[node name="Wings" type="Node3D" parent="." unique_id=1098161904]
+
+[node name="Buzz" type="AudioStreamPlayer3D" parent="." unique_id=1204419193]
+stream = ExtResource("2_u7nif")
+volume_db = -12.0
+unit_size = 1.0
+max_distance = 3.5

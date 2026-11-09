@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://cwkifnjhg0hon"]
+
+[ext_resource type="Script" uid="uid://sc5n4yhl71qh" path="res://scripts/tools/mustukas.gd" id="1_3go2j"]
+[ext_resource type="PackedScene" uid="uid://dlphqaipe1feb" path="res://assets/models/tools/mustuks.glb" id="1_iy1iu"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3go2j"]
+size = Vector3(0.13015747, 0.039706297, 0.17568207)
+
+[node name="Mustukas" type="Node3D" unique_id=1321731095]
+script = ExtResource("1_3go2j")
+
+[node name="mustuks" parent="." unique_id=948259597 instance=ExtResource("1_iy1iu")]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+
+[node name="HitArea" type="Area3D" parent="." unique_id=969584386]
+collision_layer = 0
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HitArea" unique_id=651929599]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00024473667, -0.001753639, -0.2871319)
+shape = SubResource("BoxShape3D_3go2j")

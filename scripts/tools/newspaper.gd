@@ -38,7 +38,7 @@ func _physics_process(delta: float) -> void:
 			continue
 
 		hit_targets[target_id] = true
-		area.call("take_damage")
+		area.call("take_damage", "newspaper")
 
 	hit_time_left = maxf(0.0, hit_time_left - delta)
 

@@ -1,7 +1,9 @@
 [gd_scene format=3 uid="uid://fqqoq6ekuxfr"]
 
 [ext_resource type="Script" uid="uid://cpwjo7dd265pk" path="res://scripts/pause_menu.gd" id="1_myx47"]
+[ext_resource type="Texture2D" uid="uid://dn5lyfxn3vhdr" path="res://assets/uodas.png" id="2_5d2l8"]
 [ext_resource type="FontFile" uid="uid://cjeh3il56t1a1" path="res://assets/Anak Manja.ttf" id="2_kukqi"]
+[ext_resource type="Texture2D" uid="uid://c7tpywnx311qd" path="res://assets/pliurze.png" id="3_7l7mv"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ekxnf"]
 bg_color = Color(0.20054191, 0.21976286, 0.47497916, 1)
@@ -43,6 +45,82 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ekxnf")
 
+[node name="TextureRect" type="TextureRect" parent="Panel" unique_id=2129023565]
+layout_mode = 0
+offset_left = 709.0
+offset_top = 54.000004
+offset_right = 1768.9995
+offset_bottom = 973.9999
+rotation = -0.12566371
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_5d2l8")
+flip_h = true
+
+[node name="TextureRect2" type="TextureRect" parent="Panel" unique_id=1951443666]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 230.99998
+offset_right = 1029.0
+offset_bottom = 1069.0
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_5d2l8")
+
+[node name="TextureRect3" type="TextureRect" parent="Panel" unique_id=1980773885]
+layout_mode = 0
+offset_left = 917.9999
+offset_top = 436.99997
+offset_right = 1866.9999
+offset_bottom = 1275.0
+rotation = 0.18849556
+scale = Vector2(0.12, 0.12)
+texture = ExtResource("2_5d2l8")
+flip_h = true
+
+[node name="TextureRect4" type="TextureRect" parent="Panel" unique_id=869704237]
+layout_mode = 0
+offset_left = 229.0
+offset_top = 52.0
+offset_right = 527.0
+offset_bottom = 337.0
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_7l7mv")
+
+[node name="TextureRect5" type="TextureRect" parent="Panel" unique_id=1226557195]
+layout_mode = 0
+offset_left = 925.0
+offset_top = 276.0
+offset_right = 1223.0
+offset_bottom = 561.0
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_7l7mv")
+
+[node name="TextureRect6" type="TextureRect" parent="Panel" unique_id=1254911933]
+layout_mode = 0
+offset_left = 49.0
+offset_top = 509.0
+offset_right = 347.0
+offset_bottom = 794.0
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_7l7mv")
+
+[node name="TextureRect7" type="TextureRect" parent="Panel" unique_id=766109290]
+layout_mode = 0
+offset_left = 457.0
+offset_top = 472.0
+offset_right = 755.0
+offset_bottom = 757.0
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_7l7mv")
+
+[node name="TextureRect8" type="TextureRect" parent="Panel" unique_id=455295682]
+layout_mode = 0
+offset_left = 992.0
+offset_top = 65.0
+offset_right = 1290.0
+offset_bottom = 350.0
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_7l7mv")
+
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1283648775]
 layout_mode = 1
 anchors_preset = 8
@@ -51,9 +129,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -223.5
-offset_top = -66.5
+offset_top = -68.0
 offset_right = 223.5
-offset_bottom = 66.5
+offset_bottom = 130.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 17
@@ -68,6 +146,19 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_bqqt6")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_bqqt6")
 theme_override_styles/hover = SubResource("StyleBoxFlat_l6cm7")
 text = "Resume
+"
+
+[node name="Button3" type="Button" parent="VBoxContainer" unique_id=286993239]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/h_separation = 26
+theme_override_fonts/font = ExtResource("2_kukqi")
+theme_override_font_sizes/font_size = 31
+theme_override_styles/normal = SubResource("StyleBoxFlat_bqqt6")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_bqqt6")
+theme_override_styles/hover = SubResource("StyleBoxFlat_l6cm7")
+text = "Shop
+
 "
 
 [node name="Button2" type="Button" parent="VBoxContainer" unique_id=906404952]
@@ -107,4 +198,5 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="VBoxContainer/Button3" to="." method="_on_shop_pressed"]
 [connection signal="pressed" from="VBoxContainer/Button2" to="." method="_on_exit_pressed"]

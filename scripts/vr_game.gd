@@ -82,6 +82,8 @@ func _on_vr_button(button: String) -> void:
 
 
 func _toggle_pause() -> void:
+	if GameManager.shop_open:
+		return
 	if get_tree().paused:
 		_resume()
 		return
@@ -110,6 +112,9 @@ func _toggle_pause() -> void:
 
 
 func _resume() -> void:
+	
+	if GameManager.shop_open:
+		return
 	if vr_mode:
 		panel.hide()
 	else:

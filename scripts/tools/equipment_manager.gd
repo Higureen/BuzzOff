@@ -6,7 +6,8 @@ const TOOL_SCENES: Dictionary = {
 	"flashlight": preload("res://scenes/tools/flashlight.tscn"),
 	"newspaper": preload("res://scenes/tools/newspaper.tscn"),
 	"ball": preload("res://scenes/tools/ball.tscn"),
-	"bat": preload("res://scenes/tools/Rakete.tscn")
+	"bat": preload("res://scenes/tools/Rakete.tscn"),
+	"mustukas": preload("res://scenes/tools/mustukas.tscn")
 }
 
 var active_hand: int = -1
@@ -42,7 +43,13 @@ func _ready() -> void:
 
 	menu_label.visible = false
 # turimi daiktai, rankos pradzioje tuscios
-var owned_tools: Array[String] = ["flashlight", "newspaper", "ball", "bat"]
+var owned_tools: Array[String]:
+	get:
+		var list: Array[String] = []
+		for id in GameManager.unlocked_items:
+			if not GameManager.SHOP_ORDER.has(id) or id == GameManager.selected_item:
+				list.append(id)
+		return list
 var equipped_ids: Array[String] = ["", ""]
 
 @onready var left_slot: HandToolSlot = (
@@ -105,6 +112,16 @@ func swap_hands() -> void:
 func _get_slot(hand: int) -> HandToolSlot:
 	return left_slot if hand == 0 else right_slot
 	
+func equip_in_free_hand(tool_id: String) -> void:
+	var hand: int = 0 if equipped_ids[0] == "" else 1
+	equip(hand, tool_id)
+
+
+func unequip_tool(tool_id: String) -> void:
+	for hand in 2:
+		if equipped_ids[hand] == tool_id:
+			equip(hand, "")
+			
 func _on_controller_button(button: String, hand: int) -> void:
 	if hand == 1 and button == "by_button":
 		return
@@ -228,6 +245,8 @@ func _refresh_menu() -> void:
 				display_name = "Kamuoliukas"
 			"bat":
 				display_name = "Rakėtė"
+			"mustukas":
+				display_name = "Muštukas"
 			"@swap":
 				display_name = "Sukeisti rankas"
 
@@ -241,3 +260,8 @@ func _refresh_menu() -> void:
 
 func close_menu() -> void:
 	_close_menu()
+
+func equip_only(tool_id: String) -> void:
+	equip(0, "")
+	equip(1, "")
+	equip(1, tool_id)

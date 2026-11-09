@@ -4,8 +4,12 @@ const MOSQUITO_SCENE: PackedScene = preload(
 	"res://scenes/mosquito.tscn"
 )
 
-@export_range(1, 20) var mosquito_count: int = 6
+@export_range(1, 20) var mosquito_count: int = 3
+@export var wave_delay: float = 5.0
+@export var min_per_wave: int = 5
+@export var max_per_wave: int = 12
 
+var _wave_pending: bool = false
 var _restarting: bool = false
 var _perch_owners: Dictionary = {}
 
@@ -16,6 +20,7 @@ var _perch_owners: Dictionary = {}
 
 func _ready() -> void:
 	restart_round()
+	GameManager.game_data_changed.connect(_check_wave)
 
 
 func restart_round() -> void:
@@ -34,33 +39,49 @@ func restart_round() -> void:
 		mosquitoes.remove_child(enemy)
 		enemy.queue_free()
 
+	GameManager.start_round(spawn_wave(mosquito_count))
+	_restarting = false
+
+func spawn_wave(count: int) -> int:
 	var points: Array[Node] = spawn_points.get_children()
-	var spawned: int = 0
 
 	if points.is_empty():
 		push_warning("pridek Marker3D i SpawnPoints.")
-	else:
-		for index in range(mosquito_count):
-			var marker: Node3D = (
-				points[index % points.size()] as Node3D
-			)
+		return 0
 
-			if marker == null:
-				continue
+	var spawned: int = 0
+	var offset: int = randi() % points.size()
 
-			var enemy: Area3D = MOSQUITO_SCENE.instantiate()
+	for index in range(count):
+		var marker: Node3D = (
+			points[(index + offset) % points.size()] as Node3D
+		)
 
-			enemy.habitat = self
-			enemy.position = mosquitoes.to_local(
-				marker.global_position
-			)
+		if marker == null:
+			continue
 
-			mosquitoes.add_child(enemy)
-			spawned += 1
+		var enemy: Area3D = MOSQUITO_SCENE.instantiate()
 
-	GameManager.start_round(spawned)
-	_restarting = false
+		enemy.habitat = self
+		enemy.position = mosquitoes.to_local(marker.global_position)
 
+		mosquitoes.add_child(enemy)
+		spawned += 1
+
+	return spawned
+
+
+func _check_wave() -> void:
+	if GameManager.mosquitoes_left > 0 or _wave_pending or _restarting:
+		return
+
+	_wave_pending = true
+	await get_tree().create_timer(wave_delay).timeout
+	_wave_pending = false
+
+	if GameManager.mosquitoes_left == 0 and not _restarting:
+		var count := randi_range(min_per_wave, max_per_wave)
+		GameManager.add_wave(spawn_wave(count))
 
 func _unhandled_key_input(event: InputEvent) -> void:
 	if get_tree().root.use_xr:

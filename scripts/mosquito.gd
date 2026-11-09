@@ -41,14 +41,15 @@ func _ready() -> void:
 	buzz.pitch_scale = randf_range(0.94, 1.06)
 
 
-func take_damage() -> void:
+func take_damage(weapon: String = "") -> void:
 	if is_dead:
 		return
 
 	is_dead = true
 	_release_perch()
 	buzz.stop()
-
+	
+	GameManager.play_kill_sound(weapon, global_position)
 	GameManager.mosquito_killed(reward)
 	queue_free()
 

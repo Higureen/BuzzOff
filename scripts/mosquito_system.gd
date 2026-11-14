@@ -61,6 +61,7 @@ func spawn_wave(count: int, wave: int) -> int:
 		enemy.habitat = self
 
 		if index < fast_count:
+			enemy.is_fast = true
 			enemy.approach_speed *= 1.65
 			enemy.flee_speed *= 1.25
 			enemy.attack_interval *= 0.7

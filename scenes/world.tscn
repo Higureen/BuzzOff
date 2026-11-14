@@ -204,7 +204,6 @@ light_energy = 0.3
 
 [node name="Ceiling" type="StaticBody3D" parent="." unique_id=279039389]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.097761, 0)
-visible = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Ceiling" unique_id=1719297770]
 material_override = SubResource("StandardMaterial3D_w7kh3")

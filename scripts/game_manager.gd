@@ -106,7 +106,8 @@ func try_bite_player() -> bool:
 
 	_bite_cooldown_left = BITE_COOLDOWN
 	health -= 1
-
+	_play_bite_sound()
+	
 	if health == 0:
 		run_active = false
 		_save_result()
@@ -201,3 +202,13 @@ func buy_item(id: String) -> bool:
 	unlocked_items.append(id)
 	game_data_changed.emit()
 	return true
+	
+func _play_bite_sound() -> void:
+	var player := AudioStreamPlayer.new()
+	player.stream = preload("res://assets/audio/bite.wav")
+	player.volume_db = -8.0
+	player.pitch_scale = randf_range(0.7, 1.1)
+	player.process_mode = Node.PROCESS_MODE_ALWAYS
+	add_child(player)
+	player.finished.connect(player.queue_free)
+	player.play()

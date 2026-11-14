@@ -7,6 +7,7 @@ enum State { APPROACH, FLEE, LANDING, RESTING }
 @export var reward: int = 10
 @export var attack_interval: float = 6.0
 
+var is_fast: bool = false
 var _next_attack: float = 0.0
 var habitat: Node
 var is_dead: bool = false
@@ -40,7 +41,15 @@ func _ready() -> void:
 	_phase = randf_range(0.0, TAU)
 	_timer = randf_range(4.0, 8.0)
 
-	buzz.pitch_scale = randf_range(0.94, 1.06)
+	var visual_size: float = 0.65 if is_fast else 0.80
+
+	$MeshInstance3D.scale *= visual_size
+	$Wings.scale *= visual_size
+
+	if is_fast:
+		buzz.pitch_scale = randf_range(1.18, 1.30)
+	else:
+		buzz.pitch_scale = randf_range(0.94, 1.06)
 	_next_attack = attack_interval * randf_range(0.7, 1.3)
 
 func take_damage(weapon: String = "") -> void:

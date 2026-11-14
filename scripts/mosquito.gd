@@ -5,7 +5,9 @@ enum State { APPROACH, FLEE, LANDING, RESTING }
 @export var approach_speed: float = 0.45
 @export var flee_speed: float = 1.8
 @export var reward: int = 10
+@export var attack_interval: float = 6.0
 
+var _next_attack: float = 0.0
 var habitat: Node
 var is_dead: bool = false
 var state: State = State.APPROACH
@@ -39,10 +41,10 @@ func _ready() -> void:
 	_timer = randf_range(4.0, 8.0)
 
 	buzz.pitch_scale = randf_range(0.94, 1.06)
-
+	_next_attack = attack_interval * randf_range(0.7, 1.3)
 
 func take_damage(weapon: String = "") -> void:
-	if is_dead:
+	if is_dead or not GameManager.run_active:
 		return
 
 	is_dead = true
@@ -55,7 +57,7 @@ func take_damage(weapon: String = "") -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if is_dead or habitat == null:
+	if is_dead or habitat == null or not GameManager.run_active:
 		return
 
 	_time += delta
@@ -156,29 +158,37 @@ func _physics_process(delta: float) -> void:
 				_start_approach()
 				return
 
-		_:
-			# arteja prie galvos, taciau neskrenda tiesiai i ja
-			target = camera.global_position + Vector3(
-				sin(_time * 0.8 + _phase) * 0.65,
-				sin(_time * 1.3 + _phase) * 0.12,
-				cos(_time * 0.8 + _phase) * 0.65
-			)
+		State.APPROACH:
+			var head := camera.global_position
+			var distance := global_position.distance_to(head)
+			var attacking := _time >= _next_attack and distance < 1.0
 
-			if _timer <= 0.0:
+			if attacking:
+				target = head
+
+				if distance <= 0.23 and habitat.is_route_clear(global_position, head):
+					if GameManager.try_bite_player():
+						_next_attack = _time + attack_interval * randf_range(0.85, 1.15)
+						_avoid_timer = 0.0
+						state = State.FLEE
+						_timer = 1.0
+						return
+			else:
+				target = head + Vector3(
+					sin(_time * 0.8 + _phase) * 0.65,
+					sin(_time * 1.3 + _phase) * 0.12,
+					cos(_time * 0.8 + _phase) * 0.65
+				)
+
+			if _timer <= 0.0 and not attacking:
 				_perch = habitat.reserve_perch(self)
 
 				if is_instance_valid(_perch):
 					state = State.LANDING
-
-					_landing_target = (
-						_perch.global_position
-						+ Vector3.UP * 0.08
-					)
-
+					_landing_target = _perch.global_position + Vector3.UP * 0.08
 					_timer = (
-						global_position.distance_to(
-							_landing_target
-						) / maxf(approach_speed, 0.1)
+						global_position.distance_to(_landing_target)
+						/ maxf(approach_speed, 0.1)
 						+ 3.0
 					)
 				else:

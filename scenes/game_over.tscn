@@ -1,0 +1,163 @@
+[gd_scene format=3 uid="uid://vgg3aisx0vyf"]
+
+[ext_resource type="Script" uid="uid://drpexg8s3wibd" path="res://scripts/game_over.gd" id="1_xeevv"]
+[ext_resource type="Texture2D" uid="uid://c7tpywnx311qd" path="res://assets/pliurze.png" id="2_racf3"]
+[ext_resource type="Texture2D" uid="uid://dn5lyfxn3vhdr" path="res://assets/uodas.png" id="3_7m3ot"]
+[ext_resource type="FontFile" uid="uid://cjeh3il56t1a1" path="res://assets/Anak Manja.ttf" id="4_v3hpu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_irg28"]
+bg_color = Color(0.20054191, 0.21976286, 0.47497916, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_racf3"]
+bg_color = Color(0.14509805, 0.14117648, 0.39215687, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7m3ot"]
+bg_color = Color(0.14509805, 0.14117648, 0.39215687, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v3hpu"]
+bg_color = Color(0.14509805, 0.14117648, 0.39215687, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2jtsn"]
+bg_color = Color(0.14509805, 0.14117648, 0.39215687, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8bugq"]
+bg_color = Color(0.14509805, 0.14117648, 0.39215687, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wawo4"]
+bg_color = Color(0.14509805, 0.14117648, 0.39215687, 1)
+
+[node name="GameOver" type="Control" unique_id=1211680306]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xeevv")
+
+[node name="Panel" type="Panel" parent="." unique_id=983641657]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_irg28")
+
+[node name="TextureRect4" type="TextureRect" parent="Panel" unique_id=1164282600]
+layout_mode = 0
+offset_left = 57.0
+offset_top = 234.0
+offset_right = 355.0
+offset_bottom = 519.0
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_racf3")
+
+[node name="TextureRect2" type="TextureRect" parent="Panel" unique_id=1069491535]
+layout_mode = 0
+offset_left = 207.0
+offset_top = 66.00001
+offset_right = 1346.9999
+offset_bottom = 1066.0
+rotation = 0.25132743
+scale = Vector2(0.12, 0.12)
+texture = ExtResource("3_7m3ot")
+
+[node name="TextureRect3" type="TextureRect" parent="Panel" unique_id=1033616960]
+layout_mode = 0
+offset_left = 994.0
+offset_top = 463.0
+offset_right = 1943.0
+offset_bottom = 1301.0
+rotation = -0.12566371
+scale = Vector2(0.11, 0.11)
+texture = ExtResource("3_7m3ot")
+flip_h = true
+
+[node name="TextureRect5" type="TextureRect" parent="Panel" unique_id=1117448795]
+layout_mode = 0
+offset_left = 143.0
+offset_top = 420.0
+offset_right = 1092.0
+offset_bottom = 1258.0
+rotation = -0.31415927
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("3_7m3ot")
+
+[node name="TextureRect6" type="TextureRect" parent="Panel" unique_id=656150854]
+layout_mode = 0
+offset_left = 916.99994
+offset_top = 67.0
+offset_right = 1866.0
+offset_bottom = 905.0
+rotation = -0.31415927
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("3_7m3ot")
+flip_h = true
+
+[node name="TextureRect7" type="TextureRect" parent="Panel" unique_id=1953931816]
+layout_mode = 0
+offset_left = 568.00006
+offset_top = 470.00003
+offset_right = 1517.0
+offset_bottom = 1308.0
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("3_7m3ot")
+
+[node name="TextureRect8" type="TextureRect" parent="Panel" unique_id=532861938]
+layout_mode = 0
+offset_left = 588.0
+offset_top = 136.0
+offset_right = 886.0
+offset_bottom = 421.0
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("2_racf3")
+
+[node name="TextureRect9" type="TextureRect" parent="Panel" unique_id=608697189]
+layout_mode = 0
+offset_left = 983.0
+offset_top = 269.0
+offset_right = 1281.0
+offset_bottom = 554.0
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_racf3")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1552050730]
+custom_minimum_size = Vector2(340, 0)
+layout_mode = 0
+offset_left = 390.0
+offset_top = 264.0
+offset_right = 730.0
+offset_bottom = 384.0
+scale = Vector2(1.28, 1.16)
+theme_override_constants/separation = 14
+
+[node name="Title" type="Label" parent="VBoxContainer" unique_id=1557146907]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_v3hpu")
+theme_override_font_sizes/font_size = 52
+text = "Game Over"
+
+[node name="Result" type="Label" parent="VBoxContainer" unique_id=732073217]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_v3hpu")
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+
+[node name="Retry" type="Button" parent="VBoxContainer" unique_id=2042422189]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_v3hpu")
+theme_override_font_sizes/font_size = 31
+theme_override_styles/normal = SubResource("StyleBoxFlat_racf3")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_7m3ot")
+theme_override_styles/hover = SubResource("StyleBoxFlat_v3hpu")
+text = "Play again"
+
+[node name="Menu" type="Button" parent="VBoxContainer" unique_id=1530172967]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_v3hpu")
+theme_override_font_sizes/font_size = 31
+theme_override_styles/normal = SubResource("StyleBoxFlat_2jtsn")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_8bugq")
+theme_override_styles/hover = SubResource("StyleBoxFlat_wawo4")
+text = "Back To Menu"

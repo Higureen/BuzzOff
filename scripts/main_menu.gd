@@ -7,6 +7,7 @@ func _ready() -> void:
 		get_tree().root.use_xr = false
 
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	$ScoreSummary.text = GameManager.score_summary()
 
 	var in_vr: bool = get_tree().root.use_xr
 

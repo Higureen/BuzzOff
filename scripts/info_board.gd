@@ -1,5 +1,5 @@
 extends Node3D
-
+@onready var title_label: Label3D = $TitleLabel
 @onready var weapon_label: Label3D = $WeaponLabel
 @onready var mosquito_label: Label3D = $MosquitoLabel
 @onready var money_label: Label3D = $MoneyLabel
@@ -20,6 +20,13 @@ func _ready() -> void:
 
 
 func update_board() -> void:
+	title_label.text = "Gyvybės: %d/%d   Banga: %d   %s" % [
+		GameManager.health,
+		GameManager.MAX_HEALTH,
+		GameManager.wave_number,
+		GameManager.format_time(int(GameManager.elapsed_time))
+	]
+
 	var hands: Array[String] = ["", ""]
 
 	if is_instance_valid(equipment_manager):
@@ -28,13 +35,9 @@ func update_board() -> void:
 	weapon_label.text = "Kairė: " + tool_display_name(hands[0])
 	weapon_label.text += "\nDešinė: " + tool_display_name(hands[1])
 
-	mosquito_label.text = (
-		"Uodai liko: " + str(GameManager.mosquitoes_left)
-	)
+	mosquito_label.text = "Uodai liko: " + str(GameManager.mosquitoes_left)
 	money_label.text = "Pinigai: " + str(GameManager.money)
-	killed_label.text = (
-		"Nukauti uodai: " + str(GameManager.killed_count)
-	)
+	killed_label.text = "Nukauti uodai: " + str(GameManager.killed_count)
 
 
 func tool_display_name(tool_id: String) -> String:

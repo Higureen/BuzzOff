@@ -3,8 +3,10 @@ extends Area3D
 enum State { APPROACH, FLEE, LANDING, RESTING }
 
 @export var approach_speed: float = 0.45
+@export var attack_speed: float = 1.3
+
 @export var flee_speed: float = 1.8
-@export var reward: int = 10
+@export var reward: int = 1
 @export var attack_interval: float = 6.0
 
 var is_fast: bool = false
@@ -174,6 +176,7 @@ func _physics_process(delta: float) -> void:
 
 			if attacking:
 				target = head
+				speed = attack_speed
 
 				if distance <= 0.23 and habitat.is_route_clear(global_position, head):
 					if GameManager.try_bite_player():

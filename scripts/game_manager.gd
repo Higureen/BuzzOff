@@ -7,6 +7,8 @@ const MAX_HEALTH: int = 5
 const BITE_COOLDOWN: float = 2.0
 const SCORE_PATH := "user://scores.cfg"
 const HISTORY_LIMIT: int = 5
+const DEFAULT_UNLOCKED: Array[String] = ["ball", "flashlight", "newspaper"]
+
 
 const KILL_SOUNDS := {
 	"newspaper": {"path": "res://assets/audio/laikrascio.mp3", "volume": 0.0},
@@ -16,9 +18,9 @@ const KILL_SOUNDS := {
 
 const ITEMS := {
 	"newspaper": {"name": "Laikraštis", "price": 0},
-	"mustukas": {"name": "Muštukas", "price": 200},
-	"bat": {"name": "Rakėtė", "price": 600},
-	"lamp": {"name": "Lempa", "price": 1000},
+	"mustukas": {"name": "Muštukas", "price": 30},
+	"bat": {"name": "Rakėtė", "price": 100, "requires": "mustukas"},
+	"lamp": {"name": "Lempa", "price": 150, "requires": "bat"},
 }
 
 const SHOP_ORDER := ["newspaper", "mustukas", "bat", "lamp"]
@@ -78,6 +80,9 @@ func start_round(count: int) -> void:
 	run_active = count > 0
 	killed_count = 0
 	money = 1000
+	unlocked_items = DEFAULT_UNLOCKED.duplicate()
+	selected_item = "newspaper"
+	current_weapon = ""
 	game_data_changed.emit()
 
 
@@ -90,7 +95,7 @@ func add_wave(count: int) -> void:
 	game_data_changed.emit()
 
 
-func mosquito_killed(reward: int = 10) -> void:
+func mosquito_killed(reward: int = 1) -> void:
 	if not run_active or mosquitoes_left <= 0:
 		return
 
@@ -177,21 +182,36 @@ func play_kill_sound(weapon: String, pos: Vector3) -> void:
 	player.finished.connect(player.queue_free)
 	player.play()
 
+func _play_bite_sound() -> void:
+	var player := AudioStreamPlayer.new()
+	player.stream = preload("res://assets/audio/bite.wav")
+	player.volume_db = -8.0
+	player.pitch_scale = randf_range(0.7, 1.1)
+	player.process_mode = Node.PROCESS_MODE_ALWAYS
+	add_child(player)
+	player.finished.connect(player.queue_free)
+	player.play()
+
+
 
 func change_weapon(new_weapon: String) -> void:
 	current_weapon = new_weapon
 	game_data_changed.emit()
 
+# shopo dalykai 
 
 func is_unlocked(id: String) -> bool:
 	return id in unlocked_items
 
+func requirement_met(id: String) -> bool:
+	var req: String = ITEMS[id].get("requires", "")
+	return req.is_empty() or is_unlocked(req)
 
 func buy_item(id: String) -> bool:
 	if not ITEMS.has(id) or is_unlocked(id):
 		return false
-
-	if not ITEMS[id].get("available", true):
+		
+	if not requirement_met(id):
 		return false
 
 	var price: int = ITEMS[id]["price"]
@@ -202,13 +222,3 @@ func buy_item(id: String) -> bool:
 	unlocked_items.append(id)
 	game_data_changed.emit()
 	return true
-	
-func _play_bite_sound() -> void:
-	var player := AudioStreamPlayer.new()
-	player.stream = preload("res://assets/audio/bite.wav")
-	player.volume_db = -8.0
-	player.pitch_scale = randf_range(0.7, 1.1)
-	player.process_mode = Node.PROCESS_MODE_ALWAYS
-	add_child(player)
-	player.finished.connect(player.queue_free)
-	player.play()

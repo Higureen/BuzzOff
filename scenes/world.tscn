@@ -177,9 +177,6 @@ script = ExtResource("1_nnsk1")
 [node name="TitleLabel" type="Label3D" parent="InfoBoard" unique_id=1587590098]
 transform = Transform3D(1, 0, 1.4210855e-14, 0, 1.0000001, 0, -1.4210855e-14, 0, 1, 0, 0.34102893, 0)
 
-[node name="WeaponLabel" type="Label3D" parent="InfoBoard" unique_id=1337003371]
-transform = Transform3D(1, 0, 2.1316282e-14, 0, 1.0000001, 0, -2.1316282e-14, 0, 1, 0, -0.009688139, 0)
-
 [node name="MosquitoLabel" type="Label3D" parent="InfoBoard" unique_id=528308428]
 transform = Transform3D(1, 0, 1.4210855e-14, 0, 1.0000001, 0, -1.4210855e-14, 0, 1, 0, -0.3391962, 0)
 
@@ -188,6 +185,8 @@ transform = Transform3D(1, 0, 1.4210855e-14, 0, 1.0000001, 0, -1.4210855e-14, 0,
 
 [node name="KilledLabel" type="Label3D" parent="InfoBoard" unique_id=2071155878]
 transform = Transform3D(1, 0, 1.4210855e-14, 0, 1.0000001, 0, -1.4210855e-14, 0, 1, 0, -0.7376509, 0)
+
+[node name="TimeLabel" type="Label3D" parent="InfoBoard" unique_id=344235833]
 
 [node name="TestCube" type="MeshInstance3D" parent="." unique_id=977949471]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, -2)
@@ -330,6 +329,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.4937634, 2.9595246, 6.99692
 
 [node name="SpawnWardrobe" type="Marker3D" parent="MosquitoSystem/SpawnPoints" unique_id=355214550]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6621366, 4.172199, -4.3311768)
+
+[node name="SpawnWall2" type="Marker3D" parent="MosquitoSystem/SpawnPoints" unique_id=532817616]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.526463, 4.173305, 7.6463203)
+
+[node name="SpawnBed2" type="Marker3D" parent="MosquitoSystem/SpawnPoints" unique_id=1022268910]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3566291, 4.1819983, 7.7021046)
+
+[node name="SpawnWardrobe2" type="Marker3D" parent="MosquitoSystem/SpawnPoints" unique_id=228249446]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.6930757, 3.9185, 0.23283672)
+
+[node name="SpawnWall3" type="Marker3D" parent="MosquitoSystem/SpawnPoints" unique_id=1898223227]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5754786, 0.43432617, -2.2171452)
 
 [node name="PerchPoints" type="Node3D" parent="MosquitoSystem" unique_id=196492190]
 

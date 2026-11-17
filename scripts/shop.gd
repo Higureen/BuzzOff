@@ -82,8 +82,8 @@ func refresh() -> void:
 		var info: Dictionary = GameManager.ITEMS[id]
 		var button := buttons[i]
 
-		if not info.get("available", true):
-			button.text = "Coming soon"
+		if not GameManager.is_unlocked(id) and not GameManager.requirement_met(id):
+			button.text = "Locked"
 			button.disabled = true
 		elif not GameManager.is_unlocked(id):
 			button.text = "Buy %d$" % info["price"]

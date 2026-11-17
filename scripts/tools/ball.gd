@@ -1,7 +1,7 @@
 extends HandTool
 
 @export var thrown_ball_scene: PackedScene
-@export var throw_multiplier: float = 1.0
+@export var throw_multiplier: float = 1.2 # pakeičiau čia
 @export var min_throw_speed: float = 1.0
 @export var respawn_time: float = 1.0
 

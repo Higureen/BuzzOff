@@ -9,22 +9,22 @@
 bg_color = Color(0.20054191, 0.21976286, 0.47497916, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_racf3"]
-bg_color = Color(0.14509805, 0.14117648, 0.39215687, 1)
+bg_color = Color(0.14692661, 0.14190224, 0.39026597, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_size = 5
+shadow_offset = Vector2(0, 3.41)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7m3ot"]
-bg_color = Color(0.14509805, 0.14117648, 0.39215687, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v3hpu"]
-bg_color = Color(0.14509805, 0.14117648, 0.39215687, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2jtsn"]
-bg_color = Color(0.14509805, 0.14117648, 0.39215687, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8bugq"]
-bg_color = Color(0.14509805, 0.14117648, 0.39215687, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wawo4"]
-bg_color = Color(0.14509805, 0.14117648, 0.39215687, 1)
+bg_color = Color(0.10798835, 0.13825783, 0.33421162, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_size = 5
+shadow_offset = Vector2(0, 3.41)
 
 [node name="GameOver" type="Control" unique_id=1211680306]
 layout_mode = 3
@@ -126,9 +126,9 @@ texture = ExtResource("2_racf3")
 custom_minimum_size = Vector2(340, 0)
 layout_mode = 0
 offset_left = 390.0
-offset_top = 264.0
+offset_top = 243.0
 offset_right = 730.0
-offset_bottom = 384.0
+offset_bottom = 435.0
 scale = Vector2(1.28, 1.16)
 theme_override_constants/separation = 14
 
@@ -144,20 +144,27 @@ theme_override_fonts/font = ExtResource("4_v3hpu")
 theme_override_font_sizes/font_size = 24
 horizontal_alignment = 1
 
-[node name="Retry" type="Button" parent="VBoxContainer" unique_id=2042422189]
+[node name="Retry" type="Button" parent="VBoxContainer" unique_id=575593856]
 layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/h_separation = 26
 theme_override_fonts/font = ExtResource("4_v3hpu")
 theme_override_font_sizes/font_size = 31
 theme_override_styles/normal = SubResource("StyleBoxFlat_racf3")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_7m3ot")
-theme_override_styles/hover = SubResource("StyleBoxFlat_v3hpu")
-text = "Play again"
+theme_override_styles/pressed = SubResource("StyleBoxFlat_racf3")
+theme_override_styles/hover = SubResource("StyleBoxFlat_7m3ot")
+text = "Try Again"
 
-[node name="Menu" type="Button" parent="VBoxContainer" unique_id=1530172967]
+[node name="Menu" type="Button" parent="VBoxContainer" unique_id=1203676955]
 layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/h_separation = 26
 theme_override_fonts/font = ExtResource("4_v3hpu")
 theme_override_font_sizes/font_size = 31
-theme_override_styles/normal = SubResource("StyleBoxFlat_2jtsn")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_8bugq")
-theme_override_styles/hover = SubResource("StyleBoxFlat_wawo4")
-text = "Back To Menu"
+theme_override_styles/normal = SubResource("StyleBoxFlat_racf3")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_racf3")
+theme_override_styles/hover = SubResource("StyleBoxFlat_7m3ot")
+text = "Back TO MENU"
+
+[connection signal="pressed" from="VBoxContainer/Retry" to="." method="_on_retry_pressed"]
+[connection signal="pressed" from="VBoxContainer/Menu" to="." method="_on_menu_pressed"]

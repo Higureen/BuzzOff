@@ -5,7 +5,7 @@ const MOSQUITO_SCENE: PackedScene = preload("res://scenes/mosquito.tscn")
 @export_range(1, 20) var mosquito_count: int = 3
 @export var wave_delay: float = 5.0
 @export var min_per_wave: int = 3
-@export var max_per_wave: int = 12
+@export var max_per_wave: int = 30
 
 var _wave_wait: float = -1.0
 var _restarting: bool = false

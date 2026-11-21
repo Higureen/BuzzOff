@@ -86,6 +86,12 @@ func _toggle_pause() -> void:
 	if GameManager.shop_open:
 		return
 
+	var settings := pause_ui.get_node_or_null("AudioSettingsPopup")
+
+	if settings != null and settings.visible:
+		settings.close()
+		return
+
 	if get_tree().paused:
 		_resume()
 		return

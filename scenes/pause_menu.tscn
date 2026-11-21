@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dn5lyfxn3vhdr" path="res://assets/uodas.png" id="2_5d2l8"]
 [ext_resource type="FontFile" uid="uid://cjeh3il56t1a1" path="res://assets/Anak Manja.ttf" id="2_kukqi"]
 [ext_resource type="Texture2D" uid="uid://c7tpywnx311qd" path="res://assets/pliurze.png" id="3_7l7mv"]
+[ext_resource type="PackedScene" uid="uid://cs5jc4philacy" path="res://scenes/audio_settings_popup.tscn" id="5_7l7mv"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ekxnf"]
 bg_color = Color(0.20054191, 0.21976286, 0.47497916, 1)
@@ -18,6 +19,24 @@ shadow_size = 5
 shadow_offset = Vector2(0, 3.41)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l6cm7"]
+bg_color = Color(0.10798835, 0.13825783, 0.33421162, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_size = 5
+shadow_offset = Vector2(0, 3.41)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v4r4p"]
+bg_color = Color(0.14692661, 0.14190224, 0.39026597, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_size = 5
+shadow_offset = Vector2(0, 3.41)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1s2dm"]
 bg_color = Color(0.10798835, 0.13825783, 0.33421162, 1)
 corner_radius_top_left = 8
 corner_radius_top_right = 8
@@ -139,7 +158,7 @@ theme_override_constants/separation = 17
 [node name="Button" type="Button" parent="VBoxContainer" unique_id=948891536]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_constants/h_separation = 26
+theme_override_constants/h_separation = 4
 theme_override_fonts/font = ExtResource("2_kukqi")
 theme_override_font_sizes/font_size = 31
 theme_override_styles/normal = SubResource("StyleBoxFlat_bqqt6")
@@ -160,6 +179,15 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_l6cm7")
 text = "Shop
 
 "
+
+[node name="Settings" type="Button" parent="VBoxContainer" unique_id=1340223262]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_kukqi")
+theme_override_font_sizes/font_size = 31
+theme_override_styles/normal = SubResource("StyleBoxFlat_v4r4p")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_v4r4p")
+theme_override_styles/hover = SubResource("StyleBoxFlat_1s2dm")
+text = "SETTINGS"
 
 [node name="Button2" type="Button" parent="VBoxContainer" unique_id=906404952]
 layout_mode = 2
@@ -197,6 +225,14 @@ text = "Paused"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="AudioSettingsPopup" parent="." unique_id=1375662116 instance=ExtResource("5_7l7mv")]
+layout_mode = 1
+offset_left = 2.0
+offset_top = -7.0
+offset_right = 2.0
+offset_bottom = -7.0
+
 [connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="VBoxContainer/Button3" to="." method="_on_shop_pressed"]
+[connection signal="pressed" from="VBoxContainer/Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="VBoxContainer/Button2" to="." method="_on_exit_pressed"]

@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://cs5jc4philacy"]
+
+[ext_resource type="FontFile" uid="uid://cjeh3il56t1a1" path="res://assets/Anak Manja.ttf" id="1_2xy3l"]
+[ext_resource type="Script" uid="uid://cda1yi3i7rd0q" path="res://scripts/audio_settings_popup.gd" id="1_qd4by"]
+[ext_resource type="Script" uid="uid://dv7uyx3ngktif" path="res://scripts/volume_button.gd" id="3_5cyi7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rmhhx"]
+bg_color = Color(0.2, 0.21960784, 0.4745098, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bqqt6"]
+bg_color = Color(0.14692661, 0.14190224, 0.39026597, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_size = 5
+shadow_offset = Vector2(0, 3.41)
+
+[node name="AudioSettingsPopup" type="Control" unique_id=1375662116]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qd4by")
+
+[node name="Background" type="Panel" parent="." unique_id=958054073]
+layout_mode = 0
+offset_right = 1161.0
+offset_bottom = 648.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_rmhhx")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=185215560]
+layout_mode = 0
+offset_left = 276.0
+offset_top = 174.0
+offset_right = 907.0
+offset_bottom = 474.0
+theme_override_constants/separation = 18
+alignment = 1
+
+[node name="Title" type="Label" parent="VBoxContainer" unique_id=1227098786]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_2xy3l")
+theme_override_font_sizes/font_size = 70
+text = "AUDIO SETTINGS"
+horizontal_alignment = 1
+
+[node name="MasterVolume" type="Button" parent="VBoxContainer" unique_id=2027820423]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_2xy3l")
+theme_override_font_sizes/font_size = 31
+theme_override_styles/normal = SubResource("StyleBoxFlat_bqqt6")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_bqqt6")
+theme_override_styles/hover = SubResource("StyleBoxFlat_bqqt6")
+text = "MASTER VOLUME"
+script = ExtResource("3_5cyi7")
+
+[node name="BuzzVolume" type="Button" parent="VBoxContainer" unique_id=582140532]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_2xy3l")
+theme_override_font_sizes/font_size = 31
+theme_override_styles/normal = SubResource("StyleBoxFlat_bqqt6")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_bqqt6")
+theme_override_styles/hover = SubResource("StyleBoxFlat_bqqt6")
+text = "BUZZ VOLUME"
+script = ExtResource("3_5cyi7")
+audio_channel = "Buzz"
+
+[node name="Back" type="Button" parent="VBoxContainer" unique_id=1014593022]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_2xy3l")
+theme_override_font_sizes/font_size = 31
+theme_override_styles/normal = SubResource("StyleBoxFlat_bqqt6")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_bqqt6")
+theme_override_styles/hover = SubResource("StyleBoxFlat_bqqt6")
+text = "BACK"

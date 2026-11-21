@@ -34,6 +34,7 @@ var _flight_shape: SphereShape3D = SphereShape3D.new()
 
 
 func _ready() -> void:
+	buzz.bus = &"Buzz"
 	add_to_group("mosquito")
 
 	# Uodas nebemirsta vien paspaudus ant jo.

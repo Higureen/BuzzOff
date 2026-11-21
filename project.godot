@@ -20,6 +20,7 @@ config/icon="res://assets/icon.svg"
 XRToolsUserSettings="*uid://bqgb8i74tm0t"
 XRToolsRumbleManager="*uid://by853dk86g1qw"
 GameManager="*uid://cdb2atn4i4o5r"
+AudioSettings="*uid://dc6r8aogjhxqj"
 
 [editor_plugins]
 

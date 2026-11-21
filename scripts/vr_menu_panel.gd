@@ -25,7 +25,6 @@ func _ready() -> void:
 	screen.screen_size = Vector2(1.8, 1.2)
 	screen.viewport_size = Vector2(1200, 800)
 	screen.scene = ui_scene
-
 	screen.enabled = false
 	screen.input_keyboard = false
 	screen.unshaded = true
@@ -34,29 +33,69 @@ func _ready() -> void:
 
 	ui = screen.get_scene_instance() as Control
 
-	for child in ui.get_node("VBoxContainer").get_children():
-		if child is Button and child.visible:
-			buttons.append(child)
-
 	hide()
 
 
 func open() -> void:
-	# meniu atsiranda pries zaideja
 	global_position = camera.global_position
 	global_rotation = Vector3(0, camera.global_rotation.y, 0)
 	global_position -= global_basis.z * 1.5
 
+	buttons.clear()
 	index = 0
 	stick_locked = true
 	trigger_locked = true
 
 	show()
-	buttons[index].grab_focus()
+	_refresh_buttons()
+
+
+func _collect_buttons(node: Node, result: Array[Button]) -> void:
+	for child in node.get_children():
+		if child is Control and not child.is_visible_in_tree():
+			continue
+
+		if child is Button:
+			if not child.disabled:
+				result.append(child)
+		else:
+			_collect_buttons(child, result)
+
+
+func _refresh_buttons() -> void:
+	var active_menu: Node = ui.get_meta("active_menu", ui)
+	var found: Array[Button] = []
+
+	_collect_buttons(active_menu, found)
+
+	if found == buttons:
+		return
+
+	buttons = found
+	index = 0
+
+	# Atidarius kitą meniu reikia iš naujo
+	# atleisti svirtelę ir trigerį.
+	stick_locked = true
+	trigger_locked = true
+
+	if not buttons.is_empty():
+		buttons[index].grab_focus()
 
 
 func _process(_delta: float) -> void:
-	if not visible or buttons.is_empty():
+	if not visible:
+		return
+
+	# Parduotuvė turi savo valdymą.
+	if GameManager.shop_open:
+		stick_locked = true
+		trigger_locked = true
+		return
+
+	_refresh_buttons()
+
+	if buttons.is_empty():
 		return
 
 	if not controller.get_is_active() or not XRToolsStartXR.is_xr_active():
@@ -72,9 +111,8 @@ func _process(_delta: float) -> void:
 	elif absf(y) > 0.65 and not stick_locked:
 		stick_locked = true
 
-		var direction: int = -1 if y > 0 else 1
+		var direction: int = -1 if y > 0.0 else 1
 		index = wrapi(index + direction, 0, buttons.size())
-
 		buttons[index].grab_focus()
 
 	var trigger: float = controller.get_float("trigger")

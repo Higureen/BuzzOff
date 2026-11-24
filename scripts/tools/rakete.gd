@@ -1,7 +1,7 @@
 extends HandTool
 
-@export var hit_duration: float = 0.4
-@export var attack_cooldown: float = 0.5
+@export var hit_duration: float = 0.25
+@export var attack_cooldown: float = 0.3
 
 @onready var hit_area: Area3D = $Pivot/HitArea
 

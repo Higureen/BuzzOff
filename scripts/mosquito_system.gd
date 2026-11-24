@@ -1,10 +1,12 @@
 extends Node3D
 
 const MOSQUITO_SCENE: PackedScene = preload("res://scenes/mosquito.tscn")
+const FLY_SCENE: PackedScene = preload("res://scenes/fly.tscn")
 
-@export_range(1, 20) var mosquito_count: int = 3
+@export_range(1, 20) var mosquito_count: int = 5
+@export_range(0.0, 1.0) var fly_chance: float = 0.2  # ~1 in 50 mosquitoes
 @export var wave_delay: float = 5.0
-@export var min_per_wave: int = 3
+@export var min_per_wave: int = 5
 @export var max_per_wave: int = 30
 
 var _wave_wait: float = -1.0
@@ -69,6 +71,8 @@ func spawn_wave(count: int, wave: int) -> int:
 		enemy.position = mosquitoes.to_local(marker.global_position)
 		mosquitoes.add_child(enemy)
 		spawned += 1
+		if randf() < fly_chance:
+			_spawn_fly(marker)
 
 	return spawned
 
@@ -148,3 +152,14 @@ func release_perch(marker: Marker3D, enemy: Area3D) -> void:
 	var marker_id := marker.get_instance_id()
 	if _perch_owners.get(marker_id, 0) == enemy.get_instance_id():
 		_perch_owners.erase(marker_id)
+
+
+func _spawn_fly(marker: Node3D) -> void:
+	# Only one fly at a time
+	if not get_tree().get_nodes_in_group("fly").is_empty():
+		return
+
+	var fly: Area3D = FLY_SCENE.instantiate()
+	fly.habitat = self
+	fly.position = mosquitoes.to_local(marker.global_position)
+	mosquitoes.add_child(fly)

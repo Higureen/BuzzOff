@@ -13,12 +13,12 @@ const DEFAULT_UNLOCKED: Array[String] = ["ball", "flashlight", "newspaper"]
 const KILL_SOUNDS := {
 	"newspaper": {"path": "res://assets/audio/laikrascio.mp3", "volume": 0.0},
 	"mustukas": {"path": "res://assets/audio/mustukas.wav", "volume": 2.0},
-	"bat": {"path": "res://assets/audio/nutrenkia.mp3", "volume": -14.0}
+	"bat": {"path": "res://assets/audio/nutrenkia.mp3", "volume": -20.0}
 }
 
 const ITEMS := {
 	"newspaper": {"name": "Laikraštis", "price": 0},
-	"mustukas": {"name": "Muštukas", "price": 30},
+	"mustukas": {"name": "Muštukas", "price": 40},
 	"bat": {"name": "Rakėtė", "price": 100, "requires": "mustukas"},
 	"lamp": {"name": "Lempa", "price": 150, "requires": "bat"},
 }
@@ -105,6 +105,16 @@ func mosquito_killed(reward: int = 1) -> void:
 	game_data_changed.emit()
 
 
+func fly_killed(health_reward: int = 1, coin_reward: int = 5) -> void:
+	if not run_active:
+		return
+
+	health = mini(health + health_reward, MAX_HEALTH)
+	money += coin_reward
+	game_data_changed.emit()
+	
+	
+	
 func try_bite_player() -> bool:
 	if not run_active or _bite_cooldown_left > 0.0:
 		return false

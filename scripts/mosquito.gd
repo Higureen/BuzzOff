@@ -63,6 +63,11 @@ func take_damage(weapon: String = "") -> void:
 	_release_perch()
 	buzz.stop()
 	
+	_release_perch()
+	_avoid_timer = 0.0
+	state = State.FLEE
+	_timer = 1.0
+	
 	GameManager.play_kill_sound(weapon, global_position)
 	GameManager.mosquito_killed(reward)
 	queue_free()

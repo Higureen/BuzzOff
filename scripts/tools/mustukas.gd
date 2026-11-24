@@ -1,18 +1,26 @@
 extends HandTool
 
-@export var hit_duration: float = 0.4
+@export var hit_duration: float = 0.35
 @export var attack_cooldown: float = 0.5
+@export var min_kill_speed: float = 1.5 
 
 @onready var hit_area: Area3D = $HitArea
 
 var hit_time_left: float = 0.0
 var cooldown_left: float = 0.0
 var hit_targets: Dictionary = {}
+var flinched_targets: Dictionary = {}
+
+var _last_pos: Vector3
+var _speed_history: Array[float] = []
 
 
 func _ready() -> void:
 	if hit_area == null:
 		push_error("Mustukas: child node 'HitArea' not found.")
+		return
+
+	_last_pos = hit_area.global_position
 
 
 func on_trigger_pressed() -> void:
@@ -22,13 +30,20 @@ func on_trigger_pressed() -> void:
 	hit_time_left = hit_duration
 	cooldown_left = attack_cooldown
 	hit_targets.clear()
+	flinched_targets.clear()
 
 
 func _physics_process(delta: float) -> void:
+	if hit_area == null:
+		return
+
+	_track_speed(delta)
 	cooldown_left = maxf(0.0, cooldown_left - delta)
 
-	if hit_area == null or hit_time_left <= 0.0:
+	if hit_time_left <= 0.0:
 		return
+
+	var speed: float = _recent_speed()
 
 	for area in hit_area.get_overlapping_areas():
 		if not area.is_in_group("mosquito"):
@@ -42,12 +57,32 @@ func _physics_process(delta: float) -> void:
 		if hit_targets.has(target_id):
 			continue
 
-		hit_targets[target_id] = true
-		area.call("take_damage", "mustukas")
+		if speed >= min_kill_speed:
+			hit_targets[target_id] = true
+			area.call("take_damage", "mustukas")
+		elif not flinched_targets.has(target_id):
+			flinched_targets[target_id] = true
+			if area.has_method("flinch"):
+				area.call("flinch")
+			print("mustukas too weak: ", snappedf(speed, 0.01))
 
 	hit_time_left = maxf(0.0, hit_time_left - delta)
+
+
+func _track_speed(delta: float) -> void:
+	var pos: Vector3 = hit_area.global_position
+	_speed_history.push_back(pos.distance_to(_last_pos) / maxf(delta, 0.0001))
+	_last_pos = pos
+
+	if _speed_history.size() > 6:
+		_speed_history.pop_front()
+
+
+func _recent_speed() -> float:
+	return _speed_history.max() if not _speed_history.is_empty() else 0.0
 
 
 func on_unequipped() -> void:
 	hit_time_left = 0.0
 	hit_targets.clear()
+	flinched_targets.clear()

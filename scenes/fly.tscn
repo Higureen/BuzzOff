@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://xd1chqqrysbm"]
+
+[ext_resource type="Script" uid="uid://brnjkrhff3nfm" path="res://scripts/fly.gd" id="1_xr3pu"]
+[ext_resource type="AudioStream" uid="uid://hlr8ow5tru2b" path="res://assets/audio/fly.mp3" id="2_2lkvx"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_sgyng"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0qovp"]
+albedo_color = Color(1, 1, 0.28235295, 1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_eyt7k"]
+radius = 0.052294448
+
+[node name="Fly" type="Area3D" unique_id=507544154]
+collision_mask = 0
+script = ExtResource("1_xr3pu")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=765961992]
+transform = Transform3D(0.07, 0, 0, 0, 0.07, 0, 0, 0, 0.07, 0, 0, 0)
+mesh = SubResource("SphereMesh_sgyng")
+surface_material_override/0 = SubResource("StandardMaterial3D_0qovp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=286325992]
+shape = SubResource("SphereShape3D_eyt7k")
+
+[node name="Buzz" type="AudioStreamPlayer3D" parent="." unique_id=356700186]
+stream = ExtResource("2_2lkvx")
+volume_db = -12.0
+unit_size = 1.0
+max_distance = 3.5
